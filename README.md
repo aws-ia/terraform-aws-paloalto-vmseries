@@ -73,5 +73,9 @@ No modules.
 =======
 | <a name="output_instance"></a> [instance](#output\_instance) | n/a |
 | <a name="output_interfaces"></a> [interfaces](#output\_interfaces) | Map of VM-Series network interfaces. The entries are `aws_network_interface` objects. |
+<<<<<<< HEAD
 >>>>>>> a55ac49 (feat(modules/vmseries)!: singleton implementation of vmseries modulee  (#165))
+=======
+| <a name="output_public_ips"></a> [public\_ips](#output\_public\_ips) | Map of public IPs created within the module. |
+>>>>>>> bd00386 (feat(vmseries): Add output with created public IPs (#171))
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

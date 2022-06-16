@@ -76,7 +76,8 @@ resource "aws_instance" "this" {
   dynamic "metadata_options" {
     for_each = var.enable_imdsv2 ? [1] : []
     content {
-      http_tokens = "required"
+      http_endpoint = "enabled"
+      http_tokens   = "required"
     }
   }
 

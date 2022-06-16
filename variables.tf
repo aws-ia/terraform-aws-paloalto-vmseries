@@ -23,7 +23,7 @@ variable "vmseries_version" {
   aws ec2 describe-images --region us-west-1 --filters "Name=product-code,Values=6njl1pau431dv1qxipg63mvah" "Name=name,Values=PA-VM-AWS*" --output json --query "Images[].Description" \| grep -o 'PA-VM-AWS-.*' \| sort
   ```
   EOF
-  default     = "10.0.8-h8"
+  default     = "10.2.0"
   type        = string
 }
 
@@ -127,4 +127,15 @@ variable "tags" {
   description = "Map of additional tags to apply to all resources."
   default     = {}
   type        = map(any)
+}
+
+variable "enable_imdsv2" {
+  description = <<-EOF
+  Whether to enable IMDSv2 on the EC2 instance.
+  VM-Series version 10.2.0 or higher is required to install VM-Series Plugin 3.0.0. 
+  This release of the plugin introduces enhanced Instance Metadata Service (IMDSv2) for securing instances AWS.
+  https://docs.paloaltonetworks.com/plugins/vm-series-and-panorama-plugins-release-notes/vm-series-plugin/vm-series-plugin-30/vm-series-plugin-300#id126d0957-95d7-4b29-9147-fff20027986e
+  EOF
+  default     = true
+  type        = string
 }

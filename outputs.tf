@@ -1,5 +1,6 @@
 output "instance" {
-  value = aws_instance.this
+  description = "Map of VM-Series `aws_instance` objects."
+  value       = aws_instance.this
 }
 
 output "interfaces" {

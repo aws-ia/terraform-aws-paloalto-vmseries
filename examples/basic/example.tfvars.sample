@@ -23,18 +23,27 @@ security_vpc_security_groups = {
     rules = {
       all_outbound = {
         description = "Permit All traffic outbound"
-        type        = "egress", from_port = "0", to_port = "0", protocol = "-1"
+        type        = "egress"
+        from_port   = "0"
+        to_port     = "0"
+        protocol    = "-1"
         cidr_blocks = ["0.0.0.0/0"]
       }
       https = {
         description = "Permit HTTPS"
-        type        = "ingress", from_port = "443", to_port = "443", protocol = "tcp"
+        type        = "ingress"
+        from_port   = "443"
+        to_port     = "443"
+        protocol    = "tcp"
         cidr_blocks = ["0.0.0.0/0"] # TODO: update here
       }
       ssh = {
         description = "Permit SSH"
-        type        = "ingress", from_port = "22", to_port = "22", protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"] # TODO: update here
+        type        = "ingress"
+        from_port   = "22"
+        to_port     = "22"
+        protocol    = "tcp"
+        cidr_blocks = ["0.0. d0.0/0"] # TODO: update here
       }
     }
   }

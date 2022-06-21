@@ -86,9 +86,12 @@ resource "aws_instance" "this" {
   root_block_device {
     delete_on_termination = true
     encrypted             = var.ebs_encrypted
-    kms_key_id            = var.ebs_encrypted == false ? null : (var.ebs_kms_key_id != null ? var.ebs_kms_key_id : data.aws_kms_alias.current_arn[0].target_key_arn)
+    # if ebs_encrypted is set to false, no disk encryption is used
+    # if a custom encryption key is defined via the ebs_kms_key_id variable, use that key for encryption
+    # if a custom encryption key is not defined, but ebs_encrypted is set to true, use the default encryption key
+    kms_key_id = var.ebs_encrypted == false ? null : (var.ebs_kms_key_id != null ? var.ebs_kms_key_id : data.aws_kms_alias.current_arn[0].target_key_arn)
 
-    tags                  = merge(var.tags, { Name = var.name })
+    tags = merge(var.tags, { Name = var.name })
   }
 
   # Attach primary interface to the instance

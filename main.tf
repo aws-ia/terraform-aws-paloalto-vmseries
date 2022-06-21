@@ -86,7 +86,8 @@ resource "aws_instance" "this" {
   root_block_device {
     delete_on_termination = true
     encrypted             = var.ebs_encrypted
-    kms_key_id            = var.ebs_encrypted == false ? null : var.ebs_kms_key_id != null ? var.ebs_kms_key_id : data.aws_kms_alias.current_arn[0].target_key_arn
+    kms_key_id            = var.ebs_encrypted == false ? null : (var.ebs_kms_key_id != null ? var.ebs_kms_key_id : data.aws_kms_alias.current_arn[0].target_key_arn)
+
     tags                  = merge(var.tags, { Name = var.name })
   }
 

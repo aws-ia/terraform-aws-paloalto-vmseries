@@ -12,7 +12,7 @@ variable "vmseries_ami_id" {
   EOF
   default     = null
   validation {
-    error_message = "Must be valid AMI ID."
+    error_message = "Must be a valid AMI ID."
     condition     = can(regex("^ami-[a-z0-9]{17}$", var.vmseries_ami_id))
   }
   type = string

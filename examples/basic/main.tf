@@ -39,7 +39,7 @@ module "vmseries" {
   name              = var.name
   ssh_key_name      = var.ssh_key_name
   bootstrap_options = var.bootstrap_options
-  ebs_kms_key_id    = aws_kms_alias.vmseries.name
+  ebs_kms_key_alias = aws_kms_alias.vmseries.name
 
   interfaces = {
     mgmt = {

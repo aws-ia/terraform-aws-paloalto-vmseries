@@ -55,8 +55,8 @@ variable "ebs_encrypted" {
   type        = bool
 }
 
-variable "ebs_kms_key_id" {
-  description = "The ARN for the KMS key to use for volume encryption."
+variable "ebs_kms_key_alias" {
+  description = "The alias for the KMS key to use for volume encryption."
   default     = null
   type        = string
 }

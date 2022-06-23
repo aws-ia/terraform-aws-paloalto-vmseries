@@ -11,7 +11,11 @@ variable "vmseries_ami_id" {
   If `null` (the default), `vmseries_version` and `vmseries_product_code` vars are used to determine a public image to use.
   EOF
   default     = null
-  type        = string
+  validation {
+    error_message = "Must be valid AMI ID."
+    condition     = can(regex("^ami-[a-z0-9]{17}$", var.vmseries_ami_id))
+  }
+  type = string
 }
 
 variable "vmseries_version" {

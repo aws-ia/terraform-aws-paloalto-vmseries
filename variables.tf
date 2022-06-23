@@ -24,7 +24,11 @@ variable "vmseries_version" {
   ```
   EOF
   default     = "10.2.0"
-  type        = string
+  validation {
+    error_message = "Must be valid semantic version."
+    condition     = can(regex("^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$", var.vmseries_version))
+  }
+  type = string
 }
 
 variable "vmseries_product_code" {

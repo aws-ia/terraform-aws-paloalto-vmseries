@@ -60,8 +60,10 @@ variable "ebs_encrypted" {
 }
 
 variable "ebs_kms_key_alias" {
-  description = "The alias for the KMS key to use for volume encryption."
-  default     = null
+  description = <<-EOF
+  The alias for the customer managed KMS key to use for volume encryption.
+  If this is set to `null` the default master key that protects EBS volumes will be used
+  EOF
   type        = string
 }
 

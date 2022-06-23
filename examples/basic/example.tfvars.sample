@@ -14,6 +14,11 @@ security_vpc_cidr = "10.100.0.0/16"
 security_vpc_subnets = {
   # Do not modify value of `set=`, it is an internal identifier referenced by main.tf.
   "10.100.0.0/24" = { az = "us-east-1a", set = "mgmt" }
+  "10.100.1.0/24" = { az = "us-east-1a", set = "public" }
+  "10.100.2.0/24" = { az = "us-east-1a", set = "private" }
+  "10.100.3.0/24" = { az = "us-east-1b", set = "mgmt" }
+  "10.100.4.0/24" = { az = "us-east-1b", set = "public" } 
+  "10.100.5.0/24" = { az = "us-east-1b", set = "private" }
 }
 
 # Security Groups
@@ -47,6 +52,26 @@ security_vpc_security_groups = {
       }
     }
   }
+  vmseries_private = {
+    name = "vmseries_private"
+    rules = {
+      all_outbound = {
+        description = "Permit All traffic outbound"
+        type        = "egress", from_port = "0", to_port = "0", protocol = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    }
+  }
+  vmseries_public = {
+    name = "vmseries_public"
+    rules = {
+      all_outbound = {
+        description = "Permit All traffic outbound"
+        type        = "egress", from_port = "0", to_port = "0", protocol = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    }
+  }
 }
 
 # VM-Series
@@ -54,6 +79,7 @@ ssh_key_name     = "example-ssh-key"
 vmseries_version = "10.2.0"
 vmseries = {
   vmseries01 = { az = "us-east-1a" }
+  vmseries02 = { az = "us-east-1b" }
 }
 
 bootstrap_options = "plugin-op-commands=aws-gwlb-inspect:enable,aws-gwlb-overlay-routing:enable;type=dhcp-client;hostname=vms01"

@@ -49,6 +49,19 @@ module "vmseries" {
       subnet_id          = module.security_subnet_sets["mgmt"].subnets[each.value.az].id
       create_public_ip   = true
     }
+    public = {
+      device_index       = 1
+      security_group_ids = [module.security_vpc.security_group_ids["vmseries_public"]]
+      source_dest_check  = true
+      subnet_id          = module.security_subnet_sets["public"].subnets[each.value.az].id
+      create_public_ip   = true
+    }
+    private = {
+      device_index       = 2
+      security_group_ids = [module.security_vpc.security_group_ids["vmseries_private"]]
+      source_dest_check  = false
+      subnet_id          = module.security_subnet_sets["private"].subnets[each.value.az].id
+    }
   }
 
   tags = var.global_tags
@@ -63,6 +76,14 @@ locals {
     [for cidr in var.security_vpc_routes_outbound_destin_cidrs :
       {
         subnet_key   = "mgmt"
+        next_hop_set = module.security_vpc.igw_as_next_hop_set
+        to_cidr      = cidr
+      }
+    ],
+    [
+      for cidr in var.security_vpc_routes_outbound_destin_cidrs :
+      {
+        subnet_key   = "public"
         next_hop_set = module.security_vpc.igw_as_next_hop_set
         to_cidr      = cidr
       }

@@ -1,3 +1,14 @@
+resource "aws_kms_key" "vmseries" {
+  description         = "vmseries disk encryption key"
+  enable_key_rotation = true
+}
+
+resource "aws_kms_alias" "vmseries" {
+  name          = "alias/vmseries"
+  target_key_id = aws_kms_key.vmseries.key_id
+}
+
+
 module "security_vpc" {
   source = "PaloAltoNetworks/vmseries-modules/aws//modules/vpc"
 
@@ -28,6 +39,8 @@ module "vmseries" {
   name              = var.name
   ssh_key_name      = var.ssh_key_name
   bootstrap_options = var.bootstrap_options
+  ebs_kms_key_id    = aws_kms_alias.vmseries.name
+
   interfaces = {
     mgmt = {
       device_index       = 0
@@ -39,6 +52,10 @@ module "vmseries" {
   }
 
   tags = var.global_tags
+
+  depends_on = [
+    aws_kms_alias.vmseries
+  ]
 }
 
 locals {

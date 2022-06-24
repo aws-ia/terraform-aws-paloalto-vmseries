@@ -52,7 +52,7 @@ module "vmseries" {
     public = {
       device_index       = 1
       security_group_ids = [module.security_vpc.security_group_ids["vmseries_public"]]
-      source_dest_check  = true
+      source_dest_check  = false
       subnet_id          = module.security_subnet_sets["public"].subnets[each.value.az].id
       create_public_ip   = true
     }
@@ -61,6 +61,7 @@ module "vmseries" {
       security_group_ids = [module.security_vpc.security_group_ids["vmseries_private"]]
       source_dest_check  = false
       subnet_id          = module.security_subnet_sets["private"].subnets[each.value.az].id
+      create_public_ip   = false
     }
   }
 

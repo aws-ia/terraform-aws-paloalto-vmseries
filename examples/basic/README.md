@@ -5,7 +5,9 @@ A Terraform module example for deploying a VM-Series NGFW in AWS Cloud using the
 
 This example can be used to familarize oneself with both the VM-Series NGFW and Terraform - it creates two instances of virtualized firewalls in a Security VPC with three interfaces.
 
-![basic example](../../images/basic.svg)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/aws-ia/terraform-aws-paloalto-vmseries/main/images/vm_series.png" alt="Simple" width="100%">
+</p>
 
 For a more complex scenario of using the `vmseries` module check the rest of our [Examples](https://github.com/PaloAltoNetworks/terraform-aws-vmseries-modules/tree/develop/examples).
 

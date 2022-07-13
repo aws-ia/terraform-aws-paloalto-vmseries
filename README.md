@@ -1,19 +1,20 @@
 <!-- BEGIN_TF_DOCS -->
-# Palo Alto Networks VM-Series Module for AWS
+# Palo Alto Networks VM-Series Module on AWS
 
-A Terraform module for deploying a VM-Series firewall in AWS cloud.
+This Terraform module deploys Palo Alto Networks VM-Series to the Amazon Web Services (AWS) Cloud.
 
 ## Usage
 
-For example usage, please refer to the [Examples](https://github.com/aws-ia/terraform-aws-paloalto-vmseries/tree/main/examples) directory.
+For example usage, refer to the [Examples](https://github.com/aws-ia/terraform-aws-paloalto-vmseries/tree/main/examples) directory in this repository.
 
 ### Basic Example
 
-Details can be found in [basic deployment example](https://github.com/aws-ia/terraform-aws-paloalto-vmseries/tree/main/examples/basic)
+Figure 1 shows an example configuration you can deploy using this module. For more details, refer to the [basic deployment example](https://github.com/aws-ia/terraform-aws-paloalto-vmseries/tree/main/examples/basic) in this repository.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/aws-ia/terraform-aws-paloalto-vmseries/main/images/vm_series.png" alt="Simple" width="100%">
+  <img src="https://raw.githubusercontent.com/aws-ia/terraform-aws-paloalto-vmseries/main/images/vm_series.png" alt="Simple" width="75%">
 </p>
+Figure 1. Example configuration of Palo Alto Networks VM-Series on AWS
 
 ## Requirements
 
